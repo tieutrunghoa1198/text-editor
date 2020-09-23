@@ -5,7 +5,6 @@
  */
 package controller;
 
-import controller.editcontroller.EditController;
 import controller.FileOperator;
 import view.TextEditor;
 
@@ -20,7 +19,6 @@ public class TextEditorController {
     public TextEditorController() {
         mte = new TextEditor();
         FileOperator fileCtrl = new FileOperator(mte);
-        EditController editCtrl = new EditController(mte);
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

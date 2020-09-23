@@ -1,29 +1,19 @@
 package controller;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import java.awt.event.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import view.TextEditor;
 import javax.swing.*;
+import javax.swing.event.*;
 import static javax.swing.JFileChooser.SAVE_DIALOG;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
-/**
- *
- * @author songm
- */
 public class FileOperator
 {
 
     TextEditor mte;
     boolean isSaved, isNewFile, isModified;
-    JFileChooser fileChooser;
-    boolean cancelIsClicked;
     String appName = "My Text Editor";
     String untitledName = "Untitled";
     String defaultTitle = untitledName + " - " + appName;
@@ -44,9 +34,12 @@ public class FileOperator
         System.out.println(isModified);
     }
 
-    //////////////////////////////////
+    /*
     
-    //create new file
+            ============= CODE START FROM HERE =============
+    
+     */
+    //creating a new file
     private void newFile()
     {
         if (isSaved == false && hasContent() == true)
@@ -57,7 +50,7 @@ public class FileOperator
             createEmptyDocument();
         }
     }
-    
+
     //funtion to detect if textArea's content is changed 
     private void isContentChanged()
     {
@@ -97,6 +90,11 @@ public class FileOperator
         });
     }
 
+    /*
+    
+        ========== START OF DIALOG CODE =============
+    
+     */
     private void showSaveFileDialog()
     {
         JFileChooser jfc;
@@ -148,7 +146,7 @@ public class FileOperator
         String path = jfc.getSelectedFile().toString();
         String title = splitPath(path);
         filePath = path;
-        
+
         switch (option)
         {
             case JFileChooser.APPROVE_OPTION:
@@ -163,6 +161,7 @@ public class FileOperator
 
         //end of initialize save dialog 
     }
+
     //check if user want to save file or not before creating a new file
     private void showConfirmNewFile()
     {
@@ -181,6 +180,7 @@ public class FileOperator
                 break;
         }
     }
+
     //check if user want to save the current file or not before closing window
     private void showConfirmClose()
     {
@@ -213,8 +213,56 @@ public class FileOperator
 
         });
     }
-    // END OF DIALOG CODE
 
+    private void showOpenDialog()
+    {
+        JFileChooser openDialog = new JFileChooser();
+        openDialog.setDialogTitle("Open");
+        openDialog.setCurrentDirectory(new File("."));
+        openDialog.addChoosableFileFilter(new javax.swing.filechooser.FileFilter()
+        {
+            @Override
+            public boolean accept(File f)
+            {
+                return f.isDirectory() || f.getName().toLowerCase().endsWith(".txt");
+            }
+
+            @Override
+            public String getDescription()
+            {
+                return "Text Files (*.txt)";
+            }
+        });
+
+        int option = openDialog.showOpenDialog(null);
+        String selectedPath = openDialog.getSelectedFile().toString();
+        filePath = selectedPath;
+        switch (option)
+        {
+            case JFileChooser.APPROVE_OPTION:
+                try
+                {
+                    String content = new String(Files.readAllBytes(Paths.get(selectedPath)));
+                    mte.getjTextArea1().setText(content);
+                    isSaved = true;
+                    isNewFile = false;
+                } catch (Exception e)
+                {
+                    System.out.println("cannot read file");
+                }
+                System.out.println(openDialog.getSelectedFile().toString());
+                break;
+            case JFileChooser.CANCEL_OPTION:
+                mte.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                break;
+        }
+    }
+
+    /*
+    
+        ========== END OF DIALOG CODE =============
+    
+     */
     private boolean hasContent()
     {
         return !mte.getjTextArea1().getText().equals("");
@@ -225,6 +273,7 @@ public class FileOperator
         JTextArea textArea = mte.getjTextArea1();
         textArea.setText("");
     }
+
     //funtion to seperate file name from absolute path 
     private String splitPath(String pathString)
     {
@@ -232,7 +281,7 @@ public class FileOperator
         String title = seperator[seperator.length - 1].split("\\.")[0];
         return title;
     }
-    
+
     private void writeContentToFile(File file, String content)
     {
         try
@@ -281,7 +330,7 @@ public class FileOperator
 
     private void openFileBtnActionPerformed(java.awt.event.ActionEvent evt)
     {
-        
+        showOpenDialog();
     }
 
     private void saveAsBtnActionPerformed(java.awt.event.ActionEvent evt)

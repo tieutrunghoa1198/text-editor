@@ -5,6 +5,9 @@
  */
 package texteditor;
 
+import java.io.File;
+import java.nio.file.Files;
+
 /**
  *
  * @author songm
@@ -15,6 +18,7 @@ public class NewClass
     {
         String pwd = System.getProperty("user.dir");
         System.out.println(pwd);
+//        String s = new String(Files.readAllBytes(path));
         String[] tach = pwd.split("\\\\");
         System.out.println(tach[tach.length - 1]);
     }
