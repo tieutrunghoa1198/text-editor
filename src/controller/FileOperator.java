@@ -45,6 +45,8 @@ public class FileOperator
     }
 
     //////////////////////////////////
+    
+    //create new file
     private void newFile()
     {
         if (isSaved == false && hasContent() == true)
@@ -55,7 +57,8 @@ public class FileOperator
             createEmptyDocument();
         }
     }
-
+    
+    //funtion to detect if textArea's content is changed 
     private void isContentChanged()
     {
         JTextArea textArea = mte.getjTextArea1();
@@ -94,7 +97,6 @@ public class FileOperator
         });
     }
 
-    //START OF SHOW DIALOG CODE
     private void showSaveFileDialog()
     {
         JFileChooser jfc;
@@ -146,7 +148,7 @@ public class FileOperator
         String path = jfc.getSelectedFile().toString();
         String title = splitPath(path);
         filePath = path;
-
+        
         switch (option)
         {
             case JFileChooser.APPROVE_OPTION:
@@ -161,7 +163,7 @@ public class FileOperator
 
         //end of initialize save dialog 
     }
-
+    //check if user want to save file or not before creating a new file
     private void showConfirmNewFile()
     {
         String frameTitle = mte.getTitle().split("-")[0];
@@ -179,7 +181,7 @@ public class FileOperator
                 break;
         }
     }
-
+    //check if user want to save the current file or not before closing window
     private void showConfirmClose()
     {
         String frameTitle = mte.getTitle().split("-")[0];
@@ -223,14 +225,14 @@ public class FileOperator
         JTextArea textArea = mte.getjTextArea1();
         textArea.setText("");
     }
-
+    //funtion to seperate file name from absolute path 
     private String splitPath(String pathString)
     {
         String[] seperator = pathString.split("\\\\");
         String title = seperator[seperator.length - 1].split("\\.")[0];
         return title;
     }
-
+    
     private void writeContentToFile(File file, String content)
     {
         try
@@ -279,7 +281,7 @@ public class FileOperator
 
     private void openFileBtnActionPerformed(java.awt.event.ActionEvent evt)
     {
-        // TODO add your handling code here:
+        
     }
 
     private void saveAsBtnActionPerformed(java.awt.event.ActionEvent evt)
