@@ -12,26 +12,33 @@ import view.TextEditor;
  *
  * @author songm
  */
-public class TextEditorController {
+public class TextEditorController
+{
 
     TextEditor mte;
-
-    public TextEditorController() {
+    
+    public TextEditorController()
+    {
         mte = new TextEditor();
         FileOperator fileCtrl = new FileOperator(mte);
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+        EditOperator edit = new EditOperator(mte);
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Windows".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(TextEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(() -> {
+        java.awt.EventQueue.invokeLater(() ->
+        {
             mte.setVisible(true);
         });
     }

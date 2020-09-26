@@ -6,6 +6,8 @@
 package controller;
 
 import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.undo.UndoManager;
 import view.TextEditor;
 
 /**
@@ -15,15 +17,27 @@ import view.TextEditor;
 public class EditOperator
 {
 
-    TextEditor mte;
+    private TextEditor mte;
+    private UndoManager undoManager;
+    private FindController findDialog;
+    private ReplaceController replaceDialog;
 
     public EditOperator(TextEditor mte)
     {
         this.mte = mte;
+        undoManager = new UndoManager();
+        findDialog = new FindController(mte);
+        replaceDialog = new ReplaceController(mte);
         selectAll();
         cut();
         copy();
         paste();
+        undo();
+        redo();
+        find();
+        replace();
+        font();
+        implementUndo();
     }
 
     /*
@@ -51,6 +65,46 @@ public class EditOperator
     {
         JTextArea textArea = mte.getjTextArea1();
         textArea.paste();
+    }
+
+    private void undoBtnActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        if (undoManager.canUndo())
+        {
+            undoManager.undo();
+        }
+    }
+
+    private void redoBtnActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        if (undoManager.canRedo())
+        {
+            undoManager.redo();
+        }
+    }
+
+    private void findBtnActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        findDialog.display();
+    }
+
+    private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        replaceDialog.display();
+    }
+
+    private void fontBtnActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        // TODO add your handling code here:
+    }
+
+    private void implementUndo()
+    {
+        JTextArea textArea = mte.getjTextArea1();
+        textArea.getDocument().addUndoableEditListener((UndoableEditEvent e) ->
+        {
+            undoManager.addEdit(e.getEdit());
+        });
     }
 
     /*
@@ -91,6 +145,54 @@ public class EditOperator
         pasteBtn.addActionListener((java.awt.event.ActionEvent evt) ->
         {
             pasteBtnActionPerformed(evt);
+        });
+    }
+
+    private void undo()
+    {
+        JMenuItem undoBtn = mte.getUndoBtn();
+        undoBtn.addActionListener((java.awt.event.ActionEvent evt) ->
+        {
+            undoBtnActionPerformed(evt);
+        });
+    }
+
+    private void redo()
+    {
+        JMenuItem redoBtn = mte.getRedoBtn();
+        redoBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                redoBtnActionPerformed(evt);
+            }
+        });
+    }
+
+    private void find()
+    {
+        JMenuItem findBtn = mte.getFindBtn();
+        findBtn.addActionListener((java.awt.event.ActionEvent evt) ->
+        {
+            findBtnActionPerformed(evt);
+        });
+    }
+
+    private void replace()
+    {
+        JMenuItem replaceBtn = mte.getReplaceBtn();
+        replaceBtn.addActionListener((java.awt.event.ActionEvent evt) ->
+        {
+            replaceBtnActionPerformed(evt);
+        });
+    }
+
+    private void font()
+    {
+        JMenuItem fontBtn = mte.getFontBtn();
+        fontBtn.addActionListener((java.awt.event.ActionEvent evt) ->
+        {
+            fontBtnActionPerformed(evt);
         });
     }
 // </editor-fold>

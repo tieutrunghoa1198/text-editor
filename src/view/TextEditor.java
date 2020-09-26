@@ -162,22 +162,57 @@ public class TextEditor extends javax.swing.JFrame
 
         undoBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
         undoBtn.setText("Undo");
+        undoBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                undoBtnActionPerformed(evt);
+            }
+        });
         jMenu2.add(undoBtn);
 
         redoBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
         redoBtn.setText("Redo");
+        redoBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                redoBtnActionPerformed(evt);
+            }
+        });
         jMenu2.add(redoBtn);
         jMenu2.add(jSeparator3);
 
         findBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         findBtn.setText("Find");
+        findBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                findBtnActionPerformed(evt);
+            }
+        });
         jMenu2.add(findBtn);
 
         replaceBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         replaceBtn.setText("Replace");
+        replaceBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                replaceBtnActionPerformed(evt);
+            }
+        });
         jMenu2.add(replaceBtn);
 
         fontBtn.setText("Font...");
+        fontBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                fontBtnActionPerformed(evt);
+            }
+        });
         jMenu2.add(fontBtn);
 
         jMenuBar1.add(jMenu2);
@@ -235,6 +270,31 @@ public class TextEditor extends javax.swing.JFrame
     {//GEN-HEADEREND:event_copyBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_copyBtnActionPerformed
+
+    private void undoBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_undoBtnActionPerformed
+    {//GEN-HEADEREND:event_undoBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_undoBtnActionPerformed
+
+    private void redoBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_redoBtnActionPerformed
+    {//GEN-HEADEREND:event_redoBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_redoBtnActionPerformed
+
+    private void findBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_findBtnActionPerformed
+    {//GEN-HEADEREND:event_findBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findBtnActionPerformed
+
+    private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_replaceBtnActionPerformed
+    {//GEN-HEADEREND:event_replaceBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_replaceBtnActionPerformed
+
+    private void fontBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_fontBtnActionPerformed
+    {//GEN-HEADEREND:event_fontBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fontBtnActionPerformed
 
     public JMenuItem getCopyBtn()
     {
@@ -376,40 +436,6 @@ public class TextEditor extends javax.swing.JFrame
         this.saveFileBtn = saveFile;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[])
-    {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Windows".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(TextEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() ->
-        {
-            new TextEditor().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem copyBtn;

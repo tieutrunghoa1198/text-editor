@@ -12,12 +12,12 @@ import static javax.swing.JFileChooser.SAVE_DIALOG;
 public class FileOperator
 {
 
-    TextEditor mte;
-    boolean isSaved, isNewFile, isModified;
-    String appName = "My Text Editor";
-    String untitledName = "Untitled";
-    String defaultTitle = untitledName + " - " + appName;
-    String filePath;
+    private TextEditor mte;
+    private boolean isSaved, isNewFile, isModified;
+    private String appName = "My Text Editor";
+    private String untitledName = "Untitled";
+    private String defaultTitle = untitledName + " - " + appName;
+    private String filePath;
 
     public FileOperator(TextEditor mte)
     {
