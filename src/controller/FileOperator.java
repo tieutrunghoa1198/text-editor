@@ -31,7 +31,6 @@ public class FileOperator
         saveFileBtn();
         saveAsFileBtn();
         isContentChanged();
-        System.out.println(isModified);
     }
 
     /*
@@ -374,5 +373,4 @@ public class FileOperator
             newFileBtnActionPerformed(evt);
         });
     }
-
 }

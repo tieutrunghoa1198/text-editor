@@ -42,6 +42,17 @@ public class TextEditor extends javax.swing.JFrame
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        selectAllBtn = new javax.swing.JMenuItem();
+        cutBtn = new javax.swing.JMenuItem();
+        copyBtn = new javax.swing.JMenuItem();
+        pasteBtn = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        undoBtn = new javax.swing.JMenuItem();
+        redoBtn = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        findBtn = new javax.swing.JMenuItem();
+        replaceBtn = new javax.swing.JMenuItem();
+        fontBtn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +114,72 @@ public class TextEditor extends javax.swing.JFrame
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        selectAllBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        selectAllBtn.setText("Select all");
+        selectAllBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                selectAllBtnActionPerformed(evt);
+            }
+        });
+        jMenu2.add(selectAllBtn);
+
+        cutBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        cutBtn.setText("Cut");
+        cutBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                cutBtnActionPerformed(evt);
+            }
+        });
+        jMenu2.add(cutBtn);
+
+        copyBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        copyBtn.setText("Copy");
+        copyBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                copyBtnActionPerformed(evt);
+            }
+        });
+        jMenu2.add(copyBtn);
+
+        pasteBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        pasteBtn.setText("Paste");
+        pasteBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                pasteBtnActionPerformed(evt);
+            }
+        });
+        jMenu2.add(pasteBtn);
+        jMenu2.add(jSeparator2);
+
+        undoBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        undoBtn.setText("Undo");
+        jMenu2.add(undoBtn);
+
+        redoBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        redoBtn.setText("Redo");
+        jMenu2.add(redoBtn);
+        jMenu2.add(jSeparator3);
+
+        findBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        findBtn.setText("Find");
+        jMenu2.add(findBtn);
+
+        replaceBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        replaceBtn.setText("Replace");
+        jMenu2.add(replaceBtn);
+
+        fontBtn.setText("Font...");
+        jMenu2.add(fontBtn);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -138,6 +215,116 @@ public class TextEditor extends javax.swing.JFrame
     {//GEN-HEADEREND:event_saveAsBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveAsBtnActionPerformed
+
+    private void selectAllBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_selectAllBtnActionPerformed
+    {//GEN-HEADEREND:event_selectAllBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selectAllBtnActionPerformed
+
+    private void cutBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cutBtnActionPerformed
+    {//GEN-HEADEREND:event_cutBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cutBtnActionPerformed
+
+    private void pasteBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_pasteBtnActionPerformed
+    {//GEN-HEADEREND:event_pasteBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pasteBtnActionPerformed
+
+    private void copyBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_copyBtnActionPerformed
+    {//GEN-HEADEREND:event_copyBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_copyBtnActionPerformed
+
+    public JMenuItem getCopyBtn()
+    {
+        return copyBtn;
+    }
+
+    public void setCopyBtn(JMenuItem copyBtn)
+    {
+        this.copyBtn = copyBtn;
+    }
+
+    public JMenuItem getCutBtn()
+    {
+        return cutBtn;
+    }
+
+    public void setCutBtn(JMenuItem cutBtn)
+    {
+        this.cutBtn = cutBtn;
+    }
+
+    public JMenuItem getFindBtn()
+    {
+        return findBtn;
+    }
+
+    public void setFindBtn(JMenuItem findBtn)
+    {
+        this.findBtn = findBtn;
+    }
+
+    public JMenuItem getFontBtn()
+    {
+        return fontBtn;
+    }
+
+    public void setFontBtn(JMenuItem fontBtn)
+    {
+        this.fontBtn = fontBtn;
+    }
+
+    public JMenuItem getPasteBtn()
+    {
+        return pasteBtn;
+    }
+
+    public void setPasteBtn(JMenuItem pasteBtn)
+    {
+        this.pasteBtn = pasteBtn;
+    }
+
+    public JMenuItem getRedoBtn()
+    {
+        return redoBtn;
+    }
+
+    public void setRedoBtn(JMenuItem redoBtn)
+    {
+        this.redoBtn = redoBtn;
+    }
+
+    public JMenuItem getReplaceBtn()
+    {
+        return replaceBtn;
+    }
+
+    public void setReplaceBtn(JMenuItem replaceBtn)
+    {
+        this.replaceBtn = replaceBtn;
+    }
+
+    public JMenuItem getSelectAllBtn()
+    {
+        return selectAllBtn;
+    }
+
+    public void setSelectAllBtn(JMenuItem selectAllBtn)
+    {
+        this.selectAllBtn = selectAllBtn;
+    }
+
+    public JMenuItem getUndoBtn()
+    {
+        return undoBtn;
+    }
+
+    public void setUndoBtn(JMenuItem undoBtn)
+    {
+        this.undoBtn = undoBtn;
+    }
 
     public JTextArea getjTextArea1()
     {
@@ -225,16 +412,27 @@ public class TextEditor extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem copyBtn;
+    private javax.swing.JMenuItem cutBtn;
+    private javax.swing.JMenuItem findBtn;
+    private javax.swing.JMenuItem fontBtn;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JMenuItem newFileBtn;
     private javax.swing.JMenuItem openFileBtn;
+    private javax.swing.JMenuItem pasteBtn;
+    private javax.swing.JMenuItem redoBtn;
+    private javax.swing.JMenuItem replaceBtn;
     private javax.swing.JMenuItem saveAsBtn;
     private javax.swing.JMenuItem saveFileBtn;
+    private javax.swing.JMenuItem selectAllBtn;
+    private javax.swing.JMenuItem undoBtn;
     // End of variables declaration//GEN-END:variables
 }
