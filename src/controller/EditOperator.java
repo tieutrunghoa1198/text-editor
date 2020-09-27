@@ -17,10 +17,11 @@ import view.TextEditor;
 public class EditOperator
 {
 
-    private TextEditor mte;
-    private UndoManager undoManager;
-    private FindController findDialog;
-    private ReplaceController replaceDialog;
+    private final TextEditor mte;
+    private final UndoManager undoManager;
+    private final FindController findDialog;
+    private final ReplaceController replaceDialog;
+    private final FontController fontDialog;
 
     public EditOperator(TextEditor mte)
     {
@@ -28,6 +29,7 @@ public class EditOperator
         undoManager = new UndoManager();
         findDialog = new FindController(mte);
         replaceDialog = new ReplaceController(mte);
+        fontDialog = new FontController(mte);
         selectAll();
         cut();
         copy();
@@ -38,6 +40,13 @@ public class EditOperator
         replace();
         font();
         implementUndo();
+        removeCtrlH();
+    }
+
+    private void removeCtrlH()
+    {
+        JTextArea txtArea = mte.getjTextArea1();
+        txtArea.getInputMap().put(KeyStroke.getKeyStroke("ctrl H"), "none");
     }
 
     /*
@@ -47,6 +56,7 @@ public class EditOperator
     {
         JTextArea textArea = mte.getjTextArea1();
         textArea.selectAll();
+
     }
 
     private void cutBtnActionPerformed(java.awt.event.ActionEvent evt)
@@ -91,11 +101,12 @@ public class EditOperator
     private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt)
     {
         replaceDialog.display();
+        System.out.println("something ");
     }
 
     private void fontBtnActionPerformed(java.awt.event.ActionEvent evt)
     {
-        // TODO add your handling code here:
+        fontDialog.display();
     }
 
     private void implementUndo()
@@ -160,12 +171,9 @@ public class EditOperator
     private void redo()
     {
         JMenuItem redoBtn = mte.getRedoBtn();
-        redoBtn.addActionListener(new java.awt.event.ActionListener()
+        redoBtn.addActionListener((java.awt.event.ActionEvent evt) ->
         {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                redoBtnActionPerformed(evt);
-            }
+            redoBtnActionPerformed(evt);
         });
     }
 

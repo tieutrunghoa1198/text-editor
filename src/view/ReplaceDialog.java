@@ -5,6 +5,9 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author songm
@@ -21,6 +24,66 @@ public class ReplaceDialog extends javax.swing.JDialog
         initComponents();
     }
 
+    public JButton getCancelBtn()
+    {
+        return cancelBtn;
+    }
+
+    public void setCancelBtn(JButton cancelBtn)
+    {
+        this.cancelBtn = cancelBtn;
+    }
+
+    public JButton getFindNextBtn()
+    {
+        return findNextBtn;
+    }
+
+    public void setFindNextBtn(JButton findNextBtn)
+    {
+        this.findNextBtn = findNextBtn;
+    }
+
+    public JTextField getFindWhat()
+    {
+        return findWhat;
+    }
+
+    public void setFindWhat(JTextField findWhat)
+    {
+        this.findWhat = findWhat;
+    }
+
+    public JButton getReplaceAllBtn()
+    {
+        return replaceAllBtn;
+    }
+
+    public void setReplaceAllBtn(JButton replaceAllBtn)
+    {
+        this.replaceAllBtn = replaceAllBtn;
+    }
+
+    public JButton getReplaceBtn()
+    {
+        return replaceBtn;
+    }
+
+    public void setReplaceBtn(JButton replaceBtn)
+    {
+        this.replaceBtn = replaceBtn;
+    }
+
+    public JTextField getReplaceWith()
+    {
+        return replaceWith;
+    }
+
+    public void setReplaceWith(JTextField replaceWith)
+    {
+        this.replaceWith = replaceWith;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,12 +96,12 @@ public class ReplaceDialog extends javax.swing.JDialog
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        findWhat = new javax.swing.JTextField();
+        replaceWith = new javax.swing.JTextField();
+        findNextBtn = new javax.swing.JButton();
+        replaceBtn = new javax.swing.JButton();
+        replaceAllBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -46,13 +109,41 @@ public class ReplaceDialog extends javax.swing.JDialog
 
         jLabel2.setText("Replace with:");
 
-        jButton1.setText("Find Next");
+        findNextBtn.setText("Find Next");
+        findNextBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                findNextBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Replace");
+        replaceBtn.setText("Replace");
+        replaceBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                replaceBtnActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Replace All");
+        replaceAllBtn.setText("Replace All");
+        replaceAllBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                replaceAllBtnActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Cancel");
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,15 +156,14 @@ public class ReplaceDialog extends javax.swing.JDialog
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                    .addComponent(findWhat)
+                    .addComponent(replaceWith, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(replaceAllBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(replaceBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(findNextBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,32 +172,52 @@ public class ReplaceDialog extends javax.swing.JDialog
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(findWhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(findNextBtn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(replaceWith, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton2))
+                    .addComponent(replaceBtn))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(replaceAllBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(cancelBtn)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void findNextBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_findNextBtnActionPerformed
+    {//GEN-HEADEREND:event_findNextBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findNextBtnActionPerformed
+
+    private void replaceBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_replaceBtnActionPerformed
+    {//GEN-HEADEREND:event_replaceBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_replaceBtnActionPerformed
+
+    private void replaceAllBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_replaceAllBtnActionPerformed
+    {//GEN-HEADEREND:event_replaceAllBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_replaceAllBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cancelBtnActionPerformed
+    {//GEN-HEADEREND:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JButton findNextBtn;
+    private javax.swing.JTextField findWhat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton replaceAllBtn;
+    private javax.swing.JButton replaceBtn;
+    private javax.swing.JTextField replaceWith;
     // End of variables declaration//GEN-END:variables
 }
