@@ -7,6 +7,8 @@ package controller;
 
 import java.awt.*;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import view.*;
@@ -34,6 +36,7 @@ public class FontController
         setUpFontDialog();
         setUpCurrentFont();
         changeStyle();
+        changeSize();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Look and feel"> 
@@ -116,8 +119,11 @@ public class FontController
                 String font = fontDialog.getListFont().getSelectedValue();
                 int style = fontDialog.getTextPreview().getFont().getStyle();
                 int size = fontDialog.getTextPreview().getFont().getSize();
+                JTextField fontField = fontDialog.getFontField();
+
+                fontField.setText(font);
                 fontDialog.getTextPreview().setFont(new Font(font, style, size));
-                
+
             }
         });
     }
@@ -133,6 +139,23 @@ public class FontController
                 String font = fontDialog.getTextPreview().getFont().getFamily();
                 int style = fontDialog.getListStyle().getSelectedIndex();
                 int size = fontDialog.getTextPreview().getFont().getSize();
+                JTextField styleField = fontDialog.getStyleField();
+
+                switch (style)
+                {
+                    case 0:
+                        styleField.setText("Regular");
+                        break;
+                    case 1:
+                        styleField.setText("Bold");
+                        break;
+                    case 2:
+                        styleField.setText("Italic");
+                        break;
+                    case 3:
+                        styleField.setText("Italic Bold");
+                        break;
+                }
                 fontDialog.getTextPreview().setFont(new Font(font, style, size));
             }
         });
@@ -141,11 +164,46 @@ public class FontController
     //return the choosen size
     private void changeSize()
     {
-        
+        fontDialog.getListSize().addListSelectionListener(new ListSelectionListener()
+        {
+            @Override
+            public void valueChanged(ListSelectionEvent e)
+            {
+                String font = fontDialog.getTextPreview().getFont().getFamily();
+                int style = fontDialog.getTextPreview().getFont().getStyle();
+                String selectedSize = fontDialog.getListSize().getSelectedValue();
+                int size = Integer.parseInt(selectedSize);
+                JTextField sizeField = fontDialog.getSizeField();
+
+                sizeField.setText(selectedSize);
+                fontDialog.getTextPreview().setFont(new Font(font, style, size));
+            }
+        });
+    }
+
+    private void changeFontFormat()
+    {
+        String font = fontDialog.getListFont().getSelectedValue();
+        int style = fontDialog.getListStyle().getSelectedIndex();
+        String selectedSize = fontDialog.getListSize().getSelectedValue();
+        int size = Integer.parseInt(selectedSize);
+
+        JTextField fontField = fontDialog.getFontField();
+        JTextField styleField = fontDialog.getStyleField();
+        JTextField sizeField = fontDialog.getSizeField();
+
+        if (fontField.getText().isEmpty() || styleField.getText().isEmpty() || sizeField.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Please choose valid font, style, size format.", "My Text Editor", JOptionPane.DEFAULT_OPTION);
+            return;
+        }
+
+        mte.getjTextArea1().setFont(new Font(font, style, size));
     }
 
     private void okeBtnActionPerformed(java.awt.event.ActionEvent evt)
     {
+        changeFontFormat();
         fontDialog.dispose();
     }
 
